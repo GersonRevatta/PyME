@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Biografia {% endblock %}
+{% block content %}
+<style type="text/css">
+	form{
+		text-align: center;
+	}
+</style>
+
+<form method="post" enctype="multipart/form-data" >
+	{% csrf_token %}
+	{{ re.as_p }}
+	{{ form2.as_p }}
+	<input type="submit" value="Registrar" >
+</form>
+
+
+{% endblock %}

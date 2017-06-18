@@ -1,0 +1,66 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<title>{% block title %}{% endblock %}</title>
+	<!-- bootstrap-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+</head>
+<body>
+<!-- -->
+ <nav class="navbar navbar-default navbar-static-top">
+              <div class="container">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="#"><!-- nombre para la parte izquierda era Cursos.com  --></a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">        
+                              {% block search %}
+                              {% endblock %}
+                     <ul class="nav navbar-nav navbar-right">
+                  <li class="active">
+                    <a class="btn" onclick="window.location.href='/'">Inicio</a>
+                  </li>
+                  <li><a class="btn" >Publicaciones</a></li>
+                   {% if request.session.userr %}
+                   <li >
+                      <a  class="btn" onclick="window.location.href='/logout'" >Cerrar Sesion</a>
+                     
+                  </li>
+                  <li>
+                  	<a  class="btn" onclick="window.location.href='/PerfilUsuario'" >Perfil</a>
+                  </li>
+
+                   {% else %}
+                   <li >
+                      <a class="btn" onclick="window.location.href='/login'" >Login</a>
+                   </li>
+                   <li>
+                    <a class="btn" onclick="window.location.href='/registro'" > Registrarse</a>
+                   </li>
+                   {% endif%}
+                </ul>
+                 
+                </div>
+              </div>
+            </nav>    
+
+{% block content %}
+
+
+{% endblock %}
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %} Landing {% endblock %}
+{% block content %}
+<h3> {{ request.session.userr  }} {{ welcome }}</h3>
+<h4> {{ request.session.id  }}  </h4>
+<ul>
+	<li><a href="">login</a></li>
+	<li><a href="">registro</a></li>
+	<li><a href=""></a></li>
+	<li><a href=""></a></li>
+</ul>
+
+{% endblock %}

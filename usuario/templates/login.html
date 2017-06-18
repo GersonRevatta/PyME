@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<h2>Inicio de sesion</h2>
+<style type="text/css">
+	form{
+		text-align: center;
+	}
+</style>
+<form method="post">
+	{% csrf_token %}
+	Usuario{{ frm.username }}
+	<br>
+	<br>
+	Password{{ frm.password }}
+	<br>
+	<input type="submit" value="Iniciar Sesion" name="">
+</form>
+{% endblock %}

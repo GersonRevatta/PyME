@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %} Ofertas {% endblock %}
+{% block content %}
+<h2>esta es la parte para hacer y las las publicaciones </h2>
+<form method="post">
+	{% csrf_token %}
+	{{ frm.as_p }}
+	<br>
+	<input type="submit" value="Publicar" name="">
+</form>
+
+<h3>Publicaciones</h3>
+{% for a in publico %}
+	
+	{{ a.title }}
+{% endfor %}
+
+
+{% endblock %}

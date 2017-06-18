@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Registro {% endblock %}
+{% block content %}
+<style type="text/css">
+	form{
+		text-align: center;
+	}
+</style>
+<form method="post">
+	{% csrf_token %}
+	{{ frm.as_p }}
+	
+
+		<input type="submit" value="Registrar" name="">
+</form>
+<center>{{ usuario }}</center>
+{% endblock %}

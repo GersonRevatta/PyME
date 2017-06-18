@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %} Biografia {% endblock %}
+{% block content %}
+<h2>biografia de empresa</h2>
+{{ empresa.companyname }}
+{{ empresa.companyconcept }}
+{{ empresa.contact }}
+
+
+<br>
+<h3>estas son sus imagenes</h3>
+<h5>es la foto de la biografia</h5>
+<img src="{{empresaimage.biography.url }}">
+ 	
+
+<h5>la foto de perfil</h5>
+<img src="{{ empresaimage.biography.url }}">
+
+{% endblock %}
