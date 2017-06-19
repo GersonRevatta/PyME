@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
-
+  
 def landing(request):
 	context = {
 	"welcome":"VIve la mejor experiencia  en OLX"
@@ -47,7 +47,6 @@ def RegistroUser(request):
 	#imagen de perfil
 
 def registerProfile(request):
-	
 	if request.POST:
 		re = FormularioPerfil(request.POST)	
 		form2 = FormularioImagen(request.POST,request.FILES)
@@ -100,7 +99,7 @@ def login(request):
 			if rpta == True:
 				z = request.POST['username']
 				request.session['userr']=z
-				return HttpResponse("constrasena valida")
+				return HttpResponseRedirect(reverse("checkProfile"))
 			else:
 				return HttpResponseRedirect(reverse("login"))
 				
@@ -109,6 +108,20 @@ def login(request):
 	context = {"frm":frm}
 	return render(request,"login.html",context)
 	
+	
+
+def checkProfile(request):
+	a = User.objects.get(username=request.session["userr"])
+	rpt = UserProfile.checkaa(userCheck=a)
+	print(rpt)
+	if rpt == False:
+		return HttpResponseRedirect(reverse("RegistroPerfil"))
+	else:
+		return HttpResponseRedirect(reverse("post"))
+
+
+
+			
 	
 
 def logout(request):

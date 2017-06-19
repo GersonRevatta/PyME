@@ -43,6 +43,12 @@ class User(models.Model):
 			return False
 
 
+class Category(models.Model):
+	name= models.CharField(max_length=50)
+	concept= models.TextField()
+	def __str__(self):
+		return self.name
+
 class UserProfile(models.Model):
 	SERVICIO = "S"
 	PRODUCTO = "P"
@@ -54,14 +60,19 @@ class UserProfile(models.Model):
 	contact = models.IntegerField()
 	companyservice = models.CharField(choices=CATEGORIA_CHOICES,default=SERVICIO,max_length=3)
 	user = models.ForeignKey( User , null=True , blank=True)
+	#category = models.ForeignKey(Category, null= True , blank=True)
+	#category = models.CharField(choices=Category.objects.all(),initial=0)
+	category = models.CharField(choices=CATEGORIA_CHOICES,default=SERVICIO,max_length=3)
 	slug = models.SlugField(max_length=100)
 	def save(self,*args,**kwargs):
 		self.slug = slugify(self.companyname)
 		super(UserProfile,self).save(*args, **kwargs)
-	#usuario = models.ForeignKey(User,null=True, blank=True)
-#class ProfileImage(models.Model):
-
-
+	def checkaa(userCheck):
+		try:
+			hi = UserProfile.objects.get(user=userCheck)
+			return True
+		except UserProfile.DoesNotExist:
+			return False
 
 class ProfileImage(models.Model):
 	profile = models.ForeignKey(User, null=True,blank=True)

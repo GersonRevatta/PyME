@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from usuario.views import RegistroUser , registerProfile , landing , login ,logout ,biografia , myProfile
+from usuario.views import RegistroUser , registerProfile , landing , login ,logout ,biografia , myProfile , checkProfile
 from aviso.views import post
 from django.conf import settings
 from django.conf.urls.static import static
@@ -29,6 +29,8 @@ urlpatterns = [
     url(r'^bio/(?P<slug>[-\w]+)$',biografia,name="biografia"),
     url(r'^PerfilUsuario$',myProfile,name="myProfile"),
     url(r'^Publicaciones$',post,name="post"),
+    url(r'^P$',checkProfile,name="checkProfile"),
+
     
 ]
 if settings.DEBUG is True:

@@ -12,6 +12,8 @@ class Post(models.Model):
 		self.slug = defaultfilters.slugify(self.title)
 		super(Post, self).save(*args, **kwargs)
 
+#class  PostType(models.Model):
+
 #class PostDetail(models.Model):
 
 #class Categoria():
