@@ -1,17 +1,14 @@
 from django.shortcuts import render
 # Create your views here.
 from .form import FormularioUsuario , FormularioPerfil ,FormularioImagen
-from .models import User , UserProfile , ProfileImage
+from .models import User , UserProfile , ProfileImage , Category
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
   
 def landing(request):
-	context = {
-	"welcome":"VIve la mejor experiencia  en OLX"
-	}
-	return render(request,"landing.html",context)
+	return render(request,"landing.html",{})
 
 def RegistroUser(request):
 	usuario=""
@@ -49,7 +46,7 @@ def RegistroUser(request):
 def registerProfile(request):
 	if request.POST:
 		re = FormularioPerfil(request.POST)	
-		form2 = FormularioImagen(request.POST,request.FILES)
+		form2 = FormularioImagen(request.POST,request.FILES )
 		if re.is_valid() and form2.is_valid():
 			b = form2.save()
 			a = re.save()
@@ -57,12 +54,16 @@ def registerProfile(request):
 			a.companyname = re.cleaned_data["companyname"]
 			a.companyconcept = re.cleaned_data["companyconcept"]
 			a.contact = re.cleaned_data["contact"]
-			b.profile = User.objects.get(username=request.session['userr'])
+			categoria = re.cleaned_data["categoria"]			
+			usuarioObjeto = User.objects.get(username=request.session['userr'])
+			b.profile = usuarioObjeto
 			a.save()		
 			b.save()
 			em = User.objects.get(username=request.session['userr'])
 			empresa = UserProfile.objects.get(user= em)
+			empresa.category = Category.objects.get(name=categoria)
 			y = empresa.slug
+			empresa.save()
 			return HttpResponseRedirect(reverse("biografia",args=(y,)))
 	else:		
 		form2 = FormularioImagen()
@@ -118,8 +119,6 @@ def checkProfile(request):
 		return HttpResponseRedirect(reverse("RegistroPerfil"))
 	else:
 		return HttpResponseRedirect(reverse("post"))
-
-
 
 			
 	

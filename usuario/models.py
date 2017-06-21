@@ -60,9 +60,9 @@ class UserProfile(models.Model):
 	contact = models.IntegerField()
 	companyservice = models.CharField(choices=CATEGORIA_CHOICES,default=SERVICIO,max_length=3)
 	user = models.ForeignKey( User , null=True , blank=True)
-	#category = models.ForeignKey(Category, null= True , blank=True)
+	category = models.ForeignKey(Category, null= True , blank=True)
 	#category = models.CharField(choices=Category.objects.all(),initial=0)
-	category = models.CharField(choices=CATEGORIA_CHOICES,default=SERVICIO,max_length=3)
+	#category = models.CharField(choices=CATEGORIA_CHOICES,default=SERVICIO,max_length=3)
 	slug = models.SlugField(max_length=100)
 	def save(self,*args,**kwargs):
 		self.slug = slugify(self.companyname)

@@ -1,13 +1,102 @@
 {% extends "base.html" %}
 {% block title %} Landing {% endblock %}
 {% block content %}
-<h3> {{ request.session.userr  }} {{ welcome }}</h3>
-<h4> {{ request.session.id  }}  </h4>
-<ul>
-	<li><a href="">login</a></li>
-	<li><a href="">registro</a></li>
-	<li><a href=""></a></li>
-	<li><a href=""></a></li>
-</ul>
+
+<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+ <section class="mvp">
+	<div class="max-container">
+		<h2>Empieza tu experiencia con nosotros</h2>
+		<h4> </h4>
+	</div>	
+</section>
+
+
+<style type="text/css">
+	.max-container {
+  max-width: 1000px;
+  padding: 0 2em;
+  margin: 0 auto;
+}
+
+.mvp {
+  height: 100vh;
+  background-color: #545561;
+  color: #fff;
+  margin-top: -20px;
+
+  .max-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+}
+
+.text-main{
+	background: rgba(0,0,0,0.5);
+  color: #fff;
+}
+.text-main{
+	margin-left: 60px;
+}
+</style>
+
+				<!-- que es Icanux  -->	
+			  
+
+<br>
+      <div class="row featurette">
+        <div class="col-md-7 col-md-push-5 objetivo">
+          <h2 class="featurette-heading"> NUESTRA OBJETIVO <span class="text-muted"> ;D </span></h2>
+          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        </div>
+        <div class="col-md-5 col-md-pull-7">
+          <img src="http://lorempixel.com/500/500/" class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+        </div>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <div class="row featurette">
+        <div class="col-md-7 integrar">
+          <h2 class="featurette-heading"> INTEGRATE A LA COMUNIDAD <span class="text-muted"> :D</span></h2>
+          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        </div>
+        <div class="col-md-5">
+          <img src="http://lorempixel.com/500/500/" class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+        </div>
+      </div>
+
+      
+
+
+				
+			
+					
+				
+					
+			<br>
+
+					<style type="text/css">
+
+					.objetivo , .integrar{
+						padding-top: 115px;
+					}
+						#MensajeContent{
+							height: 85px;
+						}
+					</style>
+	
+
+
 
 {% endblock %}

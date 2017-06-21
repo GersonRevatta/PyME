@@ -1,19 +1,143 @@
 {% extends "base.html" %}
 {% block title %} Biografia {% endblock %}
 {% block content %}
-<h2>biografia de empresa</h2>
-{{ empresa.companyname }}
-{{ empresa.companyconcept }}
-{{ empresa.contact }}
 
 
-<br>
-<h3>estas son sus imagenes</h3>
+
+<style type="text/css">
+
+	.VisorBiografia{
+		margin-top: -17px;
+	}
+	.perfil{
+		border-radius: 20px;
+		background-color: rgb(77,87,93);
+		height: 100vh;
+		position:fixed;
+
+	}
+	.biografia{
+		
+		height: 100vh;
+	}
+	.ProfileImage{
+		border-radius: 50%;
+		height: 200px;
+		width: 200px;
+		background-color: white;
+		background-image: url("{{ empresaimage.biography.url }}");
+		background-size: 100% 100%;
+		
+		margin: 50px ;
+	}
+	.description{
+		color:rgba(255,255,255,1);
+		background-color: rgba(0,0,0,0.5);
+		text-align: center;
+		padding: 15px 69px;
+		margin:40px 50px;
+		border-radius: 20px;
+	}
+	 .perfilNombre{
+		margin: 50px;
+	}
+
+</style>
+  <div class="row featurette VisorBiografia">
+
+        <div class="col-md-3  perfil">
+                <div class="row featurette">
+
+	        		<div class="ProfileImage"></div>
+	        	
+	        		<h3 class="perfilNombre">Nombre : <span class="text-muted"> {{ empresa.companyname }}</span></h3>
+	        		<h3 class="perfilNombre">Contacto : <span class="text-muted"> {{ empresa.contact }}</span></h3>
+
+        		</div>
+        	
+        </div>
+          <!--
+          <h2 class="featurette-heading"> NUESTRA OBJETIVO <span class="text-muted"> ;D </span></h2>
+
+          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+          -->
+
+        <div class="col-md-9 biografia ">
+        	<div class="row featurette">
+        	<img src="{{empresaimage.biography.url }}" class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+        	<!--
+	          <img src="http://lorempixel.com/990/200/" class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+	          -->
+	          <br>
+        		<div  class="description">
+        			<p>
+        			{{ empresa.companyconcept }}
+        			</p>
+        		</div>	
+        	</div>
+          
+
+          
+        </div>
+   </div>
+
+
+
+
+
+
+
+
 <h5>es la foto de la biografia</h5>
 <img src="{{empresaimage.biography.url }}">
  	
 
 <h5>la foto de perfil</h5>
 <img src="{{ empresaimage.biography.url }}">
+
+
+<br>
+
+  <aside>
+      <div class="my_profile">
+        <div class="img-container">
+          <img src="http://lorempixel.com/200/200/people" alt="">
+        </div>
+        <div class="profile__name">
+          <h4>Luis Lopez</h4>
+          <a href="/profile"><small>Ver mi perfil</small></a>
+        </div>
+      </div>
+
+      <div class="my_projects">
+        <h3>
+          <a href="/best_practices">Mis guias</a>
+        </h3>
+        <h3>Mis proyectos</h3>
+        <ul>
+          <li>
+            <span>Proyecto A</span>
+            <small class="state wip">En ejecución</small>
+          </li>
+          <li>
+            <span>Proyecto B</span>
+            <small class="state done">Terminado</small>
+          </li>
+          <li>
+            <span>Proyecto Lorem ipsum dolor sit amet</span>
+            <small class="state done">Terminado</small>
+          </li>
+          <li>
+            <span>Proyecto D</span>
+            <small class="state done">Terminado</small>
+          </li>
+          <li>
+            <span>Proyecto E</span>
+            <small class="state done">Terminado</small>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
 
 {% endblock %}
