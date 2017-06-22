@@ -30,26 +30,22 @@ def RegistroUser(request):
 					usuario ="El correo ya esta en uso , Registre otro"	
 			else:
 				usuario="El usuario  ya esta en uso elige otro NOmbre de usurio"
-				
-
-
 	else:	
 		frm = FormularioUsuario()
 	context = {"frm":frm,"usuario":usuario}	
 	return render(request,"registro.html",context)
 
-
-
 	#biografia
-	#imagen de perfil
+	#imagen de perfil  
 
 def registerProfile(request):
+	mensaje=""
 	if request.POST:
 		re = FormularioPerfil(request.POST)	
 		form2 = FormularioImagen(request.POST,request.FILES )
 		if re.is_valid() and form2.is_valid():
-			b = form2.save()
-			a = re.save()
+			b = form2.save(commit=False)
+			a = re.save(commit=False)
 			a.user  = User.objects.get(username=request.session['userr'])
 			a.companyname = re.cleaned_data["companyname"]
 			a.companyconcept = re.cleaned_data["companyconcept"]
@@ -57,18 +53,23 @@ def registerProfile(request):
 			categoria = re.cleaned_data["categoria"]			
 			usuarioObjeto = User.objects.get(username=request.session['userr'])
 			b.profile = usuarioObjeto
-			a.save()		
-			b.save()
-			em = User.objects.get(username=request.session['userr'])
-			empresa = UserProfile.objects.get(user= em)
-			empresa.category = Category.objects.get(name=categoria)
-			y = empresa.slug
-			empresa.save()
-			return HttpResponseRedirect(reverse("biografia",args=(y,)))
+			validandoEmpresa = UserProfile.checkName(name= request.POST["companyname"])
+			if validandoEmpresa == False:
+				a.save()		
+				b.save()
+				em = User.objects.get(username=request.session['userr'])
+				empresa = UserProfile.objects.get(user= em)
+				empresa.category = Category.objects.get(name=categoria)
+				y = empresa.slug
+				empresa.save()
+				return HttpResponseRedirect(reverse("biografia",args=(y,)))
+			else:
+				mensaje="La empresa ya esta registrada , Ingrese otro nombre"
+					
 	else:		
 		form2 = FormularioImagen()
 		re = FormularioPerfil()
-	context = {"re":re,"form2":form2}
+	context = {"re":re,"form2":form2,"mensaje":mensaje}
 	return render(request,"perfil.html",context)
 #http://127.0.0.1:8000/bio/jajaj-es-chico-linux
 
@@ -93,20 +94,25 @@ def formulario(request):
 
 #sesion
 def login(request):
+	mensaje=""
 	if request.POST:
 		frm = FormularioUsuario(request.POST)
 		if frm.is_valid:
-			rpta = User.login(user=request.POST["username"],password=request.POST["password"])
-			if rpta == True:
-				z = request.POST['username']
-				request.session['userr']=z
-				return HttpResponseRedirect(reverse("checkProfile"))
+			check = User.chekUser(checkuser=request.POST["username"])
+			if check == True:
+				rpta = User.login(user=request.POST["username"],password=request.POST["password"])
+				if rpta == True:
+					z = request.POST['username']
+					request.session['userr']=z
+					return HttpResponseRedirect(reverse("checkProfile"))
+				else:
+					mensaje="Contraseña incorrecta , Trate de escribir bien"
 			else:
-				return HttpResponseRedirect(reverse("login"))
+				mensaje="Create una cuenta , deja de jugar"		
 				
 	else:	
 		frm = FormularioUsuario()
-	context = {"frm":frm}
+	context = {"frm":frm,"mensaje":mensaje}
 	return render(request,"login.html",context)
 	
 	
@@ -135,6 +141,3 @@ def logout(request):
 #funcionalidad
 def newPost():
 	...
-
-
-

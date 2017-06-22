@@ -13,6 +13,12 @@ class User(models.Model):
 	email = models.EmailField()
 	password = models.CharField(max_length=64)
 	timestamp = models.DateTimeField(auto_now_add=True,auto_now=False)
+	def chekUser(checkuser):
+		try:
+			usuarioRegistrado = User.objects.get(username=checkuser)
+			return True
+		except:	
+			return False
 	def crear(user,password):
 		s = User()
 		s.usename = user
@@ -70,6 +76,12 @@ class UserProfile(models.Model):
 	def checkaa(userCheck):
 		try:
 			hi = UserProfile.objects.get(user=userCheck)
+			return True
+		except UserProfile.DoesNotExist:
+			return False
+	def checkName(name):
+		try:
+			nombre = UserProfile.objects.get(companyname=name)
 			return True
 		except UserProfile.DoesNotExist:
 			return False

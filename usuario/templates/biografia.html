@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% block title %} Biografia {% endblock %}
+{% block nav %}
+{% endblock %}
 {% block content %}
 
 
@@ -7,9 +9,11 @@
 <style type="text/css">
 
 	.VisorBiografia{
-		margin-top: -17px;
+		margin-left: 20px;
+		
 	}
 	.perfil{
+		width: 25%;
 		border-radius: 20px;
 		background-color: rgb(77,87,93);
 		height: 100vh;
@@ -19,13 +23,14 @@
 	.biografia{
 		
 		height: 100vh;
+		margin-left: 350px;
 	}
 	.ProfileImage{
 		border-radius: 50%;
 		height: 200px;
 		width: 200px;
 		background-color: white;
-		background-image: url("{{ empresaimage.biography.url }}");
+		background-image: url("{{ empresaimage.companyimage.url }}");
 		background-size: 100% 100%;
 		
 		margin: 50px ;
@@ -41,6 +46,7 @@
 	 .perfilNombre{
 		margin: 50px;
 	}
+	}
 
 </style>
   <div class="row featurette VisorBiografia">
@@ -49,9 +55,12 @@
                 <div class="row featurette">
 
 	        		<div class="ProfileImage"></div>
-	        	
-	        		<h3 class="perfilNombre">Nombre : <span class="text-muted"> {{ empresa.companyname }}</span></h3>
-	        		<h3 class="perfilNombre">Contacto : <span class="text-muted"> {{ empresa.contact }}</span></h3>
+	        	      <hr class="featurette-divider">
+
+	        		<h3 class="perfilNombre">Enterprise : <span class="text-muted"> {{ empresa.companyname }}</span></h3>
+	        		<h3 class="perfilNombre">Contact : <span class="text-muted"> {{ empresa.contact }}</span></h3>
+ 	        		
+
 
         		</div>
         	
@@ -75,7 +84,9 @@
         			</p>
         		</div>	
         	</div>
-          
+        	<center>		
+          <h3>Ultimas Publicaciones</h3>
+        	</center>
 
           
         </div>
@@ -85,59 +96,6 @@
 
 
 
-
-
-
-<h5>es la foto de la biografia</h5>
-<img src="{{empresaimage.biography.url }}">
- 	
-
-<h5>la foto de perfil</h5>
-<img src="{{ empresaimage.biography.url }}">
-
-
-<br>
-
-  <aside>
-      <div class="my_profile">
-        <div class="img-container">
-          <img src="http://lorempixel.com/200/200/people" alt="">
-        </div>
-        <div class="profile__name">
-          <h4>Luis Lopez</h4>
-          <a href="/profile"><small>Ver mi perfil</small></a>
-        </div>
-      </div>
-
-      <div class="my_projects">
-        <h3>
-          <a href="/best_practices">Mis guias</a>
-        </h3>
-        <h3>Mis proyectos</h3>
-        <ul>
-          <li>
-            <span>Proyecto A</span>
-            <small class="state wip">En ejecución</small>
-          </li>
-          <li>
-            <span>Proyecto B</span>
-            <small class="state done">Terminado</small>
-          </li>
-          <li>
-            <span>Proyecto Lorem ipsum dolor sit amet</span>
-            <small class="state done">Terminado</small>
-          </li>
-          <li>
-            <span>Proyecto D</span>
-            <small class="state done">Terminado</small>
-          </li>
-          <li>
-            <span>Proyecto E</span>
-            <small class="state done">Terminado</small>
-          </li>
-        </ul>
-      </div>
-    </aside>
 
 
 {% endblock %}
