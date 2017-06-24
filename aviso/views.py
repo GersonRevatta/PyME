@@ -9,18 +9,13 @@ from django.core.urlresolvers import reverse
 
 # Create your views here.
 def post(request):
-	if request.POST:
-		frm = FormularioPost(request.POST)
-		if frm.is_valid():
-			a = frm.save()
-			a.title = frm.cleaned_data["title"]
-			a.description = frm.cleaned_data["description"]
-			a.save()
-			return HttpResponseRedirect(reverse('post'))
-		else:
-			return HttpResponse("es un error corrigelo")	
-	else:
-		frm = FormularioPost()
 	publico = Post.objects.all()	
-	context = {"frm":frm,"publico":publico}
+	context = {"publico":publico}
 	return render(request,"ofertas.html",context)
+
+def postDetail(request,slug):
+	producto = Post.objects.get(slug=slug)
+	context = {"producto":producto}
+	return render(request,"ofertaDetalle.html",context)
+
+

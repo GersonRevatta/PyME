@@ -5,7 +5,8 @@ from .models import User , UserProfile , ProfileImage , Category
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-
+from aviso.form import FormularioPost , FormularioPostImage
+from aviso.models import Post , PostImage
   
 def landing(request):
 	return render(request,"landing.html",{})
@@ -60,6 +61,7 @@ def registerProfile(request):
 				em = User.objects.get(username=request.session['userr'])
 				empresa = UserProfile.objects.get(user= em)
 				empresa.category = Category.objects.get(name=categoria)
+				empresa.profileimage = ProfileImage.objects.get(profile=em)
 				y = empresa.slug
 				empresa.save()
 				return HttpResponseRedirect(reverse("biografia",args=(y,)))
@@ -80,11 +82,42 @@ def myProfile(request):
 	return HttpResponseRedirect(reverse("biografia",args=(empresa.slug,)))
 
 
+
+
+	
+	
+
+#	profileimage = models.ForeignKey(ProfileImage , null=True ,blank=True)
+
 def biografia(request,slug):
+	if request.POST:
+		frm = FormularioPost(request.POST)
+		fr = FormularioPostImage(request.POST,request.FILES)
+		if frm.is_valid() and fr.is_valid():
+			a = frm.save()
+			b = fr.save() 
+			a.title = frm.cleaned_data["title"]
+			a.description = frm.cleaned_data["description"]
+			b.title = a.title
+			tituloPost = b.title
+			b.save()
+			a.postimage = PostImage.objects.get(title=tituloPost)
+			#a.user = User.objects.get(username=request.session['userr'])
+			useraa = User.objects.get(username=request.session['userr'])
+			a.user = UserProfile.objects.get(user=useraa)
+			a.save()
+			#return HttpResponseRedirect(reverse('post'))
+			return HttpResponseRedirect(reverse("biografia",args=(slug,)))
+		else:
+			return HttpResponse("es un error corrigelo")	
+	else:
+		frm = FormularioPost()
+		fr = FormularioPostImage()
 	empresa = UserProfile.objects.get(slug=slug)
 	user = User.objects.get(username=request.session['userr'])
+	publico = Post.objects.filter(user=empresa)	
 	empresaimage = ProfileImage.objects.get(profile=user)
-	context = {"empresa":empresa,"empresaimage":empresaimage}
+	context = {"empresa":empresa,"empresaimage":empresaimage,"frm":frm,"publico":publico,"fr":fr}
 	return render(request,"biografia.html",context)
 
 

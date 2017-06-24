@@ -1,37 +1,119 @@
 {% extends "base.html" %}
 {% block title %} Ofertas {% endblock %}
 {% block content %}
-<h2>esta es la parte para hacer y las las publicaciones </h2>
 
+<style type="text/css">
 
-{% if request.session.userr %}
-<form method="post">
-	{% csrf_token %}
-	{{ frm.as_p }}
-	<br>
-	<input type="submit" value="Publicar" name="">
-</form>
+*{
+	margin: 0px;
+	padding: 0px;
+}
+	aside {
+		height: 100vh;
+		display: inline-block;
+		width: 20%;
+		background-color:blue;
+		float: left;
+		margin: -12px 5px;
+		border-radius: 10px;
 
-{% endif %}
-
-<h3>Publicaciones</h3>
-{% for a in publico %}
+		
+		
+	}
+	.publicaciones{
+		clear: both;
+		display: inline-block;
+		width: 78%;
+		background-color: #e6eaea;	
 	
-	{{ a.title }}
+	}
 
-	<br>
-	<hr>
-{% endfor %}
-<h3>estas son las ofertas</h3>
-    <style type="text/css">
-    
- #contenido { width:80%; height:200px; background-color:orange; }
-      #responsive_text {font-size:24pt; white-space:nowrap; overflow:hidden; text-overflow: ellipsis;}
-    	
-    </style>
-  
-    <div id="contenido">
-      <p id="responsive_text">Todo lo que siempre quisiste saber sobre HTML, CSS y JavaScript y no te atreviste a preguntar.</p>
-    </div> 
+
+</style>
+<aside>
+<h2>Category</h2>
+<ul>
+	<li>algo</li>
+	<li>algo</li>
+	<li>algo</li>
+	<li>algo</li>
+</ul>
+</aside>
+
+<div class="publicaciones">
+	
+
+		<h3>Publicaciones</h3>
+	
+	    	<h2>Ofertas o publicaciones </h2>
+          	{% for a in publico %}
+
+<style type="text/css">
+	.center-block_{
+	margin-top: 30px;
+}
+		.cajaProducto_{
+			margin-top: 34px;
+		width: 80%;
+		}
+        .OfertasProducto_{
+        height: 160px;
+        border-radius: 2px;
+        width: 80%;
+		margin: 5px 10%;
+		border:1px red solid ;	
+        }
+
+		.OfertasProductoDescripcion_{
+		font-size: 20pt;
+		white-space:nowrap;
+		overflow:hidden;
+		text-overflow: ellipsis;
+
+		}
+		.imagenProducto_{
+			margin-top: 30px;
+			height: 100px;
+			background-color: red;
+			width: 100px;
+			background-size: 100% 100%;
+			background-image: url("{{ a.postimage.imagepost.url }}");
+		}
+
+</style>
+<a href="{% url 'postDetail' a.slug %}">
+		<div class="row OfertasProducto_">
+			
+
+		        <div class="col-md-3  perfil_">
+					<div class="imagenProducto_">
+						
+					</div>	        
+		        	
+		        </div>
+
+		        <div class="col-md-9  ">
+			    
+					<h4>{{ a.title }}</h4>
+					<br>
+					<div class="cajaProducto_">
+					<p class="OfertasProductoDescripcion_"> {{ a.description }} </p>
+					</div>
+
+		        </div>
+	        
+
+		</div>
+</a>
+
+			<br>
+
+          	{% endfor%}
+
+			<br>
+			
+		
+</div>
+
 
 {% endblock %}

@@ -21,9 +21,9 @@
 
 	}
 	.biografia{
+		margin-left: 300px;		
+		background-color: #e6eaea;
 		
-		height: 100vh;
-		margin-left: 350px;
 	}
 	.ProfileImage{
 		border-radius: 50%;
@@ -86,16 +86,127 @@
         	</div>
         	<center>		
           <h3>Ultimas Publicaciones</h3>
+
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Agregar Curso</button>
+
+				
         	</center>
 
           
+          <center>
+
+
+          	<h2>Ofertas o publicaciones </h2>
+          	{% for a in publico %}
+
+<style type="text/css">
+	.center-block_{
+	margin-top: 30px;
+}
+		.cajaProducto_{
+			margin-top: 34px;
+		width: 80%;
+		}
+        .OfertasProducto_{
+        height: 160px;
+        border-radius: 2px;
+        width: 80%;
+		margin: 5px 10%;
+		border:1px red solid ;	
+        }
+
+		.OfertasProductoDescripcion_{
+		font-size: 20pt;
+		white-space:nowrap;
+		overflow:hidden;
+		text-overflow: ellipsis;
+
+		}
+		.imagenProducto_{
+			margin-top: 30px;
+			height: 100px;
+			background-color: red;
+			width: 100px;
+			background-size: 100% 100%;
+			background-image: url("{{ a.postimage.imagepost.url }}");
+		}
+
+</style>
+		<a href="{% url 'postDetail' a.slug %}" onclick="window.location.href='/detalle/{{ a.slug }}'" >
+			
+			<div class="row OfertasProducto_">
+					
+			        <div class="col-md-3  perfil_">
+						<div class="imagenProducto_">
+							
+						</div>	        
+			        	
+			        </div>
+
+			        <div class="col-md-9  ">
+				    
+						<h4>{{ a.title }}</h4>
+						<br>
+						<div class="cajaProducto_">
+						<p class="OfertasProductoDescripcion_"> {{ a.description }} </p>
+						</div>
+
+			        </div>
+		        
+
+			</div>
+		</a>
+
+			<br>
+
+          	{% endfor%}
+          </center>
         </div>
    </div>
 
 
+<!-- pop up  para realizar la publicacion -->
 
 
+<!-- popup para agregar curso -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Hacer una Publicacion</h4>
+      </div>
+      <div class="modal-body">
+        <!--  -->
+<form method="post" enctype="multipart/form-data" >
+{% csrf_token %}
+				
+				{{ frm.as_p }}
+				{{ fr.as_p }}
+				<table>
+					<tr>
+						
+					</tr>
+					<!-- 
+						<tr>
+						<td>Selecionar &nbsp;</td>
+						<td>{{ fr.nombre }}	
+							{{ fr.nombre.errors }}
+							
+						</td>
+					</tr> -->
 
+				</table>
+        	<button type="submit" class="btn btn-primary">Aceptar</button>
+        	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</form>
+        <!--  -->
+      </div>
+    </div>
+  </div>
+</div>
 
+{% block footer %}
+{% endblock %}
 
 {% endblock %}

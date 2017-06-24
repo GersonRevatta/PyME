@@ -8,8 +8,15 @@ class FormularioUsuario(forms.ModelForm):
 		fields = ["username","email","password"]
 		widgets = {
 			"password":forms.TextInput(attrs={"type":"password"})
-
 		}
+		def clean_email(self):
+			email = self.cleaned_data.get("email")
+			nombre , proveedor = email.split("@")
+			dominio , extencion = proveedor.split(".")
+			if extencion == "com":
+				raise forms.ValidationError("Escribe correctamente tu correo")
+			return email	
+
 
 
 

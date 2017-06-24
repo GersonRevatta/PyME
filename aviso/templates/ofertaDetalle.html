@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %} Descripcion {% endblock %}
+{% block content %}
+
+
+
+{{ producto.title }}
+<br>
+{{ producto.description }}
+<br>
+	<img src="{{ producto.postimage.imagepost.url }}" class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+
+
+<h3>a quien pertenece la publicacion o al dueño del post </h3>
+{{ producto.user.companyname}}
+
+	<img src="{{ producto.user.profileimage.biography.url }}" class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+
+{{ producto.user.profileimage.biography.url }}
+
+<br>
+
+
+
+
+{% endblock  %}

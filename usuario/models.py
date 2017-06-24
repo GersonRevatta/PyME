@@ -55,6 +55,13 @@ class Category(models.Model):
 	def __str__(self):
 		return self.name
 
+class ProfileImage(models.Model):
+	profile = models.ForeignKey(User, null=True,blank=True)
+	companyimage = models.ImageField(upload_to='empresas/')
+	biography = models.ImageField(upload_to='biografias')
+
+	
+
 class UserProfile(models.Model):
 	SERVICIO = "S"
 	PRODUCTO = "P"
@@ -67,6 +74,7 @@ class UserProfile(models.Model):
 	companyservice = models.CharField(choices=CATEGORIA_CHOICES,default=SERVICIO,max_length=3)
 	user = models.ForeignKey( User , null=True , blank=True)
 	category = models.ForeignKey(Category, null= True , blank=True)
+	profileimage = models.ForeignKey(ProfileImage , null=True ,blank=True)
 	#category = models.CharField(choices=Category.objects.all(),initial=0)
 	#category = models.CharField(choices=CATEGORIA_CHOICES,default=SERVICIO,max_length=3)
 	slug = models.SlugField(max_length=100)
@@ -85,10 +93,4 @@ class UserProfile(models.Model):
 			return True
 		except UserProfile.DoesNotExist:
 			return False
-
-class ProfileImage(models.Model):
-	profile = models.ForeignKey(User, null=True,blank=True)
-	companyimage = models.ImageField(upload_to='empresas/')
-	biography = models.ImageField(upload_to='biografias')
-	
 

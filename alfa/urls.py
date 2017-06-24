@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from usuario.views import RegistroUser , registerProfile , landing , login ,logout ,biografia , myProfile , checkProfile
-from aviso.views import post
+from aviso.views import post , postDetail
 from django.conf import settings
 from django.conf.urls.static import static
 urlpatterns = [
@@ -30,6 +30,7 @@ urlpatterns = [
     url(r'^PerfilUsuario$',myProfile,name="myProfile"),
     url(r'^Publicaciones$',post,name="post"),
     url(r'^P$',checkProfile,name="checkProfile"),
+    url(r'^detalle/(?P<slug>[-\w]+)$',postDetail,name="postDetail"),
 
     
 ]
