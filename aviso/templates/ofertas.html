@@ -1,10 +1,18 @@
 {% extends "base.html" %}
 {% block title %} Ofertas {% endblock %}
+{% block search %}
+		<form class="navbar-form navbar-left" method="GET" action="">
+	        <div class="form-group">
+	          <input type="text" class="form-control" placeholder="Search" name="q" value="{{ request.GET.q }}">
+	        </div>
+	        <button type="submit" class="btn btn-default">Search</button>
+      </form>
+{% endblock %}
 {% block content %}
 
 <style type="text/css">
-
 *{
+
 	margin: 0px;
 	padding: 0px;
 }
@@ -24,96 +32,141 @@
 		clear: both;
 		display: inline-block;
 		width: 78%;
+		margin: -12px 5px;
 		background-color: #e6eaea;	
+		border-radius: 10px;
 	
 	}
-
-
-</style>
-<aside>
-<h2>Category</h2>
-<ul>
-	<li>algo</li>
-	<li>algo</li>
-	<li>algo</li>
-	<li>algo</li>
-</ul>
-</aside>
-
-<div class="publicaciones">
 	
 
-		<h3>Publicaciones</h3>
-	
-	    	<h2>Ofertas o publicaciones </h2>
-          	{% for a in publico %}
-
-<style type="text/css">
-	.center-block_{
-	margin-top: 30px;
-}
-		.cajaProducto_{
-			margin-top: 34px;
-		width: 80%;
-		}
-        .OfertasProducto_{
-        height: 160px;
-        border-radius: 2px;
-        width: 80%;
-		margin: 5px 10%;
-		border:1px red solid ;	
-        }
-
-		.OfertasProductoDescripcion_{
-		font-size: 20pt;
-		white-space:nowrap;
-		overflow:hidden;
-		text-overflow: ellipsis;
-
-		}
-		.imagenProducto_{
-			margin-top: 30px;
-			height: 100px;
-			background-color: red;
-			width: 100px;
-			background-size: 100% 100%;
-			background-image: url("{{ a.postimage.imagepost.url }}");
-		}
-
 </style>
-<a href="{% url 'postDetail' a.slug %}">
-		<div class="row OfertasProducto_">
-			
+<div class="containerTotal">
+	<aside>
+		<center>
+			<h2>Category</h2>
+		</center>
 
-		        <div class="col-md-3  perfil_">
-					<div class="imagenProducto_">
-						
-					</div>	        
-		        	
-		        </div>
+	     <br>
+	    <form method="GET">
+	     	<div  class="list-group  categorylist ">
+		     	{% for t in categoria %}
+		     		<input  type="submit"  name="q" class=" categorybutton list-group-item list-group-item-info" value="{{ t.name }}">		
+		     	{% endfor %}
+		  
+			</div>
+	    </form>
 
-		        <div class="col-md-9  ">
-			    
-					<h4>{{ a.title }}</h4>
-					<br>
-					<div class="cajaProducto_">
-					<p class="OfertasProductoDescripcion_"> {{ a.description }} </p>
-					</div>
+	</aside>
 
-		        </div>
-	        
 
-		</div>
-</a>
-
-			<br>
-
-          	{% endfor%}
-
-			<br>
-			
+	<div class="publicaciones">
 		
+
+			<h3>Publicaciones</h3>
+		
+		    	<h2>Ofertas o publicaciones </h2>
+	          	{% for a in publico %}
+
+		<style type="text/css">
+			.containerPagination{
+				text-align: center;
+			}
+			.categorybutton{
+				width: 100%;
+				text-align: center;
+			}
+			.categorylist{
+				padding:10px 35px;
+			}
+			.center-block_{
+			margin-top: 30px;
+	     	}
+			.cajaProducto_{
+				margin-top: 34px;
+			width: 80%;
+			}
+	        .OfertasProducto_{
+	        height: 160px;
+	        border-radius: 2px;
+	        width: 80%;
+			margin: 5px 10%;
+			border:1px red solid ;	
+	        }
+
+			.OfertasProductoDescripcion_{
+			font-size: 20pt;
+			white-space:nowrap;
+			overflow:hidden;
+			text-overflow: ellipsis;
+
+			}
+			.imagenProducto_{
+				margin-top: 30px;
+				height: 100px;
+				background-color: red;
+				width: 100px;
+				background-size: 100% 100%;
+				
+			}
+
+		</style>
+				<div class="row OfertasProducto_">
+					
+
+				        <div class="col-md-3  perfil_">
+							<div class="imagenProducto_">
+					        	<img src="{{ a.postimage.imagepost.url }}" class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+
+							</div>	        
+				        	
+				        </div>
+
+				        <div class="col-md-9  ">
+							<a href="{% url 'postDetail' a.slug %}">
+					    
+							<h4>{{ a.title }}</h4>
+							<br>
+							<div class="cajaProducto_">
+							<p class="OfertasProductoDescripcion_"> {{ a.description }} </p>
+							</div>
+
+							</a>
+				        </div>
+			        
+
+				</div>
+
+				<br>
+
+	          	{% endfor%}
+
+				<br>
+				
+						<!--paginacion -->
+				<div class="containerPagination">
+					<nav aria-label="Page navigation">
+						  <ul class="pagination">
+						    <li>
+						     {% if publico.has_previous %}
+				            <a aria-label="Previous" href="?page={{ publico.previous_page_number }}&q={{ request.GET.q }}"><b>
+				            Anterior</b></a> <span aria-hidden="true">&laquo;</span>
+				        	{% endif %}
+						    </li>
+						    <li><a href="">Pagina  {{ publico.number }} de  {{ publico.paginator.num_pages }}. </a></li>
+						    
+						    <li>
+						    {% if publico.has_next %}
+				            	<a aria-label="Next" href="?page={{ publico.next_page_number }}&q={{ request.GET.q }}"><b>Siguiente</b>
+				            	</a><span aria-hidden="true">&raquo;</span>
+				        	{% endif %}
+						      
+						    </li>
+						  </ul>
+						</nav>
+				</div>	
+	</div>
 </div>
+
 
 
 {% endblock %}

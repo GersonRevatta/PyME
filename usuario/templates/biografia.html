@@ -87,7 +87,7 @@
         	<center>		
           <h3>Ultimas Publicaciones</h3>
 
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Agregar Curso</button>
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Publicar</button>
 
 				
         	</center>
@@ -128,7 +128,8 @@
 			background-color: red;
 			width: 100px;
 			background-size: 100% 100%;
-			background-image: url("{{ a.postimage.imagepost.url }}");
+			/* background-image: url("{{ a.postimage.imagepost.url }}"); 
+			*/
 		}
 
 </style>
@@ -138,7 +139,8 @@
 					
 			        <div class="col-md-3  perfil_">
 						<div class="imagenProducto_">
-							
+							        	<img src="{{ a.postimage.imagepost.url }}" class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+
 						</div>	        
 			        	
 			        </div>

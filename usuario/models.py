@@ -49,17 +49,17 @@ class User(models.Model):
 			return False
 
 
-class Category(models.Model):
-	name= models.CharField(max_length=50)
-	concept= models.TextField()
-	def __str__(self):
-		return self.name
-
 class ProfileImage(models.Model):
 	profile = models.ForeignKey(User, null=True,blank=True)
 	companyimage = models.ImageField(upload_to='empresas/')
 	biography = models.ImageField(upload_to='biografias')
 
+
+class Category(models.Model):
+	name= models.CharField(max_length=50)
+	concept= models.TextField()
+	def __str__(self):
+		return self.name
 	
 
 class UserProfile(models.Model):

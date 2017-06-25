@@ -2,25 +2,91 @@
 {% block title %} Descripcion {% endblock %}
 {% block content %}
 
+<style type="text/css">
+	*{
+		margin: 0px;
+		padding: 0px;
+	}
+	.pulicacionDetalle{
+		margin: -12px 8px;
+		display: inline-block;
+		background-color: orange;
+		width: 72%
+		
+		
+	}
+
+	aside{
+		height: 99vh;
+		display: inline-block;
+		background-color: green;
+		width: 25%;
+		float: right;
+		margin: -12px 5px;
+		border-radius: 10px;
+		padding: 3px 20px;
+
+	}
+	.containerTotal{
+	}
+	.imagenProducto{
+		height: 600px;
+		width: 100%;
+		padding: 0px 40px;
+
+	}
+	h5,h2 ,h4  ,.ConceptProducto	{
+		text-align: center;
+	}
+
+</style>
+<div class="containerTotal">
+	
+	<div class="pulicacionDetalle">	
+	
+	<h2>{{ producto.title }}</h2>
+	<br>
+		<img src="{{ producto.postimage.imagepost.url }}" class="featurette-image img-responsive center-block imagenProducto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+	<br>
+	<div class="ConceptProducto">	
+	{{ producto.description }}
+	</div>
+	<br>
+	</div>
+	<aside>		
+	<h4>Autor</h4>
+	<h5>	
+	<a href="{% url 'biografia' producto.user.slug %}">
+		{{ producto.user.user.username }}
+	</a>
+	</h5>
+	<a href="">
+		<img src="{{ producto.user.profileimage.biography.url }}" class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+	</a>
+	<h4> Empresa : </h4>
+	<h5>	
+	<a href="{% url 'biografia' producto.user.slug %}">
+		{{ producto.user.companyname }}
+	</a>
+	</h5>
+	<br>
+	<br>
+	<hr>
+	<h3><span class="glyphicon glyphicon-pushpin" style="color: orange;"></span>Consejos de seguridad para compradores</h3>
+	<h6><span class="glyphicon glyphicon-ok" style="color: lightgreen;"></span>Desconfía de propuestas poco realistas</h6>
+    <h6><span class="glyphicon glyphicon-ok" style="color: lightgreen;"></span>Revisa el articulo antes de comprarlo</h6>
+    <h6><span class="glyphicon glyphicon-ok" style="color: lightgreen;"></span>Procura realizar el pago con la entrega</h6>
+    
+
+	
+	</aside>
 
 
-{{ producto.title }}
-<br>
-{{ producto.description }}
-<br>
-	<img src="{{ producto.postimage.imagepost.url }}" class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
 
-
-<h3>a quien pertenece la publicacion o al dueño del post </h3>
-{{ producto.user.companyname}}
-
-	<img src="{{ producto.user.profileimage.biography.url }}" class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-
-{{ producto.user.profileimage.biography.url }}
-
-<br>
-
+</div>
 
 
 
 {% endblock  %}
+{% block footer %}
+{% endblock %}
