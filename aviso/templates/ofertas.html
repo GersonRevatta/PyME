@@ -19,11 +19,12 @@
 	aside {
 		height: 100vh;
 		display: inline-block;
-		width: 20%;
-		background-color:blue;
+		width: 18%;
+		background-color:white;
 		float: left;
-		margin: -12px 5px;
+		margin: -12px 15px;
 		border-radius: 10px;
+		margin-left: 22px;
 
 		
 		
@@ -33,7 +34,6 @@
 		display: inline-block;
 		width: 78%;
 		margin: -12px 5px;
-		background-color: #e6eaea;	
 		border-radius: 10px;
 	
 	}
@@ -59,13 +59,14 @@
 	</aside>
 
 
+
 	<div class="publicaciones">
 		
 
-			<h3>Publicaciones</h3>
-		
-		    	<h2>Ofertas o publicaciones </h2>
-	          	{% for a in publico %}
+			<center>
+				<h2>Ofertas</h2>
+			</center>
+	       	{% for a in publico %}
 
 		<style type="text/css">
 			.containerPagination{
@@ -82,10 +83,11 @@
 			margin-top: 30px;
 	     	}
 			.cajaProducto_{
-				margin-top: 34px;
+			margin-top: 34px;
 			width: 80%;
 			}
 	        .OfertasProducto_{
+	        background-color: white;
 	        height: 160px;
 	        border-radius: 2px;
 	        width: 80%;
@@ -101,27 +103,32 @@
 
 			}
 			.imagenProducto_{
-				margin-top: 30px;
+
+				margin: 20px 4%;
 				height: 100px;
-				background-color: red;
 				width: 100px;
-				background-size: 100% 100%;
+				
 				
 			}
+			.imagenPro {
+				width: 100px;
+				height: 100px;
 
+				
+			}
 		</style>
 				<div class="row OfertasProducto_">
 					
-
+			
 				        <div class="col-md-3  perfil_">
 							<div class="imagenProducto_">
-					        	<img src="{{ a.postimage.imagepost.url }}" class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+					        	<img src="{{ a.postimage.imagepost.url }}" class="featurette-image img-responsive center-block imagenPro" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
 
 							</div>	        
 				        	
 				        </div>
 
-				        <div class="col-md-9  ">
+				        <div class="col-md-9">
 							<a href="{% url 'postDetail' a.slug %}">
 					    
 							<h4>{{ a.title }}</h4>

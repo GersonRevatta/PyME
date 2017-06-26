@@ -4,142 +4,137 @@
 {% endblock %}
 {% block content %}
 
-
-
 <style type="text/css">
-
-	.VisorBiografia{
-		margin-left: 20px;
-		
+	*{
+	margin: 0px;
+	padding: 0px;
 	}
-	.perfil{
-		width: 25%;
-		border-radius: 20px;
-		background-color: rgb(77,87,93);
+	aside{
+		margin: 15px 5px;
+		background-color: green;
 		height: 100vh;
-		position:fixed;
-
+		width: 20%;
+		display: inline-block;
+		border-radius: 10px;
+		float: left;
 	}
-	.biografia{
-		margin-left: 300px;		
-		background-color: #e6eaea;
-		
-	}
-	.ProfileImage{
-		border-radius: 50%;
-		height: 200px;
-		width: 200px;
+	.biografiaDetalle{
+		margin: 15px 15px;
 		background-color: white;
-		background-image: url("{{ empresaimage.companyimage.url }}");
-		background-size: 100% 100%;
+		width:  75%;
+		display: inline-block;
+		border-radius: 10px;
+	}
+	.profileImage{
+		height: 150px;
+		width: 150px;
+		border-radius: 50%;
 		
-		margin: 50px ;
 	}
-	.description{
-		color:rgba(255,255,255,1);
-		background-color: rgba(0,0,0,0.5);
+	h3 , h4{
 		text-align: center;
-		padding: 15px 69px;
-		margin:40px 50px;
-		border-radius: 20px;
 	}
-	 .perfilNombre{
-		margin: 50px;
-	}
-	}
+	.biografiaDetalle{
 
+	}
+	.imagenBiografia{
+		width: 100%;
+		height: 400px;
+		margin: 15px 0px;
+		padding: 5px 2%;
+	}
+	.descripcionBiografia{
+		background-color: #eceeee;
+		width: 80%;
+		margin: 15px 10%;
+		border-radius: 5px
+	}
+	.containerTotal{
+		margin: 0px 2%;
+		padding: 4px 1%;
+	}
 </style>
-  <div class="row featurette VisorBiografia">
-
-        <div class="col-md-3  perfil">
-                <div class="row featurette">
-
-	        		<div class="ProfileImage"></div>
-	        	      <hr class="featurette-divider">
-
-	        		<h3 class="perfilNombre">Enterprise : <span class="text-muted"> {{ empresa.companyname }}</span></h3>
-	        		<h3 class="perfilNombre">Contact : <span class="text-muted"> {{ empresa.contact }}</span></h3>
- 	        		
-
-
-        		</div>
-        	
-        </div>
-          <!--
-          <h2 class="featurette-heading"> NUESTRA OBJETIVO <span class="text-muted"> ;D </span></h2>
-
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-          -->
-
-        <div class="col-md-9 biografia ">
-        	<div class="row featurette">
-        	<img src="{{empresaimage.biography.url }}" class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-        	<!--
-	          <img src="http://lorempixel.com/990/200/" class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-	          -->
-	          <br>
-        		<div  class="description">
-        			<p>
-        			{{ empresa.companyconcept }}
-        			</p>
-        		</div>	
-        	</div>
-        	<center>		
-          <h3>Ultimas Publicaciones</h3>
-
+<div class="containerTotal">
+	
+	<aside>
+		<div class="">
+		<img src="{{ empresaimage.companyimage.url }}" class="featurette-image img-responsive profileImage center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+		</div>
+		<br>
+		<h3 class="perfilNombre"> <span class="glyphicon glyphicon-home"> </span><b>Enterprise:</b></h3>
+		<h4>{{ empresa.companyname }}</h4>
+	    <h3 class="perfilNombre"> <span class="glyphicon glyphicon-earphone"> </span><b>Contact:</b></h3>
+	    <h4>{{ empresa.contact }}</h4>
+	    <br>
+	    <br>
+	    <center>	
+	    <a type="button" href="{% url 'post' %}" class="btn btn-default" >  <span class="glyphicon glyphicon-backward"> </span>  Volver</a>
+	    </center>
+	    
+	</aside>
+	<!-- es la parte de la biografia descripcion y publicaciones -->
+	<div class="biografiaDetalle">
+		<div class="biografia">
+			<div class="imagenBiografia">
+				<img src="{{empresaimage.biography.url }}" class="imagenBiografia featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+			</div>
+			<br>
+			<div class="descripcionBiografia">
+				<p>{{ empresa.companyconcept }}</p>
+			</div>
+		</div>
+		<div class="publicacion">
+		    <center>		
 			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Publicar</button>
-
-				
+          		<h3>Publicaciones</h3>
         	</center>
-
-          
-          <center>
-
-
-          	<h2>Ofertas o publicaciones </h2>
+			<center>
           	{% for a in publico %}
 
-<style type="text/css">
-	.center-block_{
-	margin-top: 30px;
-}
-		.cajaProducto_{
-			margin-top: 34px;
-		width: 80%;
-		}
-        .OfertasProducto_{
-        height: 160px;
-        border-radius: 2px;
-        width: 80%;
-		margin: 5px 10%;
-		border:1px red solid ;	
-        }
+		<style type="text/css">
+				
+				.cajaProducto_{
+					margin-top: 34px;
+				width: 80%;
+				}
+		        .OfertasProducto_{
+		        height: 160px;
+		        border-radius: 2px;
+		        width: 80%;
+				margin: 5px 10%;
+				border:1px red solid ;	
+		        }
 
-		.OfertasProductoDescripcion_{
-		font-size: 20pt;
-		white-space:nowrap;
-		overflow:hidden;
-		text-overflow: ellipsis;
+				.OfertasProductoDescripcion_{
+				font-size: 20pt;
+				white-space:nowrap;
+				overflow:hidden;
+				text-overflow: ellipsis;
 
-		}
-		.imagenProducto_{
-			margin-top: 30px;
-			height: 100px;
-			background-color: red;
-			width: 100px;
-			background-size: 100% 100%;
-			/* background-image: url("{{ a.postimage.imagepost.url }}"); 
-			*/
-		}
+				}
+				.imagenProducto_{
+					margin-top: 30px;
+					height: 100px;
+					background-color: red;
+					width: 100px;
+					background-size: 100% 100%;
+					/* background-image: url("{{ a.postimage.imagepost.url }}"); 
+					*/
+				}
 
-</style>
+				.imagenPro {
+				width: 100px;
+				height: 100px;
+				}
+
+		</style>
 		<a href="{% url 'postDetail' a.slug %}" onclick="window.location.href='/detalle/{{ a.slug }}'" >
 			
 			<div class="row OfertasProducto_">
 					
 			        <div class="col-md-3  perfil_">
 						<div class="imagenProducto_">
-							        	<img src="{{ a.postimage.imagepost.url }}" class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+							        	<img src="{{ a.postimage.imagepost.url }}" class="featurette-image img-responsive center-block imagenPro" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
 
 						</div>	        
 			        	
@@ -165,11 +160,12 @@
           </center>
         </div>
    </div>
-
+		</div>
+		
+	</div>
+</div>
 
 <!-- pop up  para realizar la publicacion -->
-
-
 <!-- popup para agregar curso -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
   <div class="modal-dialog" role="document">
@@ -208,7 +204,7 @@
   </div>
 </div>
 
-{% block footer %}
 {% endblock %}
 
+{% block footer %}
 {% endblock %}

@@ -8,9 +8,10 @@
 		padding: 0px;
 	}
 	.pulicacionDetalle{
-		margin: -12px 8px;
+		margin: 5px 15px;
 		display: inline-block;
-		background-color: orange;
+		margin-left: 25px;
+		background-color: white;
 		width: 72%
 		
 		
@@ -20,14 +21,16 @@
 		height: 99vh;
 		display: inline-block;
 		background-color: green;
-		width: 25%;
+		width: 24%;
 		float: right;
-		margin: -12px 5px;
+		margin: 5px 0px;
 		border-radius: 10px;
 		padding: 3px 20px;
 
 	}
 	.containerTotal{
+		margin:2px 3%;
+
 	}
 	.imagenProducto{
 		height: 600px;
@@ -35,8 +38,21 @@
 		padding: 0px 40px;
 
 	}
-	h5,h2 ,h4  ,.ConceptProducto	{
+	h5,h2 ,h4  	{
 		text-align: center;
+	}
+	.ConceptProducto{
+		margin: 10px 10%;
+		text-align: center;
+		background-color: #eceeee;
+	}
+	.profileImage{
+		border-radius: 50%;
+		height: 150px;
+		width: 150px;
+	}
+	.consejo{
+		margin-left: 0px;
 	}
 
 </style>
@@ -61,21 +77,24 @@
 	</a>
 	</h5>
 	<a href="">
-		<img src="{{ producto.user.profileimage.biography.url }}" class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+		<img src="{{ producto.user.profileimage.biography.url }}" class="featurette-image img-responsive profileImage center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
 	</a>
-	<h4> Empresa : </h4>
-	<h5>	
+	<h3 class="perfilNombre"> <span class="glyphicon glyphicon-home"> </span><b>Enterprise:</b></h3>
+	<h4>	
 	<a href="{% url 'biografia' producto.user.slug %}">
 		{{ producto.user.companyname }}
 	</a>
-	</h5>
+	</h4>
+	<h3><span class="glyphicon glyphicon-earphone"></span> <b>Contacto:</b> </h3>
+	<h4>{{ producto.user.contact }}</h4>
 	<br>
 	<br>
 	<hr>
-	<h3><span class="glyphicon glyphicon-pushpin" style="color: orange;"></span>Consejos de seguridad para compradores</h3>
-	<h6><span class="glyphicon glyphicon-ok" style="color: lightgreen;"></span>Desconfía de propuestas poco realistas</h6>
-    <h6><span class="glyphicon glyphicon-ok" style="color: lightgreen;"></span>Revisa el articulo antes de comprarlo</h6>
-    <h6><span class="glyphicon glyphicon-ok" style="color: lightgreen;"></span>Procura realizar el pago con la entrega</h6>
+	<h4><span class="glyphicon glyphicon-pushpin" style="color: orange;"></span><b>Consejos de seguridad</b></h4>
+	<br>
+	<h5 class="consejo"><span class="glyphicon glyphicon-ok" style="color: lightgreen;"></span>Desconfía de propuestas poco realistas</h5>
+    <h5 class="consejo"><span class="glyphicon glyphicon-ok" style="color: lightgreen;"></span>Revisa el articulo antes de comprarlo</h5>
+    <h5 class="consejo"><span class="glyphicon glyphicon-ok" style="color: lightgreen;"></span>Procura realizar el pago con la entrega</h5>
     
 
 	
