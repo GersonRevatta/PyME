@@ -16,6 +16,7 @@ class Post(models.Model):
 	title = models.CharField(max_length=100)
 	slug = models.SlugField(max_length=100)
 	description = models.TextField()
+	precio = models.FloatField(null=True,blank=True)
 	postimage = models.ForeignKey(PostImage,null=True,blank=True)
 	def save(self, *args, **kwargs):
 		self.slug = defaultfilters.slugify(self.title)
